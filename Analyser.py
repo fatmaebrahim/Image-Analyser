@@ -6,7 +6,7 @@ from ultralytics import YOLO
 model = YOLO("yolov9m.pt")
 def analyse_image(image): 
     results = model(image)
-    object_names = [ model.names[int(box.cls[0])] for result in results for box in result.boxes ]
+    object_names = [ model.names[int(box.cls[0])] for box in results[0].boxes ]
     for box in results[0].boxes:
         x1, y1, x2, y2 = map(int, box.xyxy[0])
         confidence = box.conf[0]
